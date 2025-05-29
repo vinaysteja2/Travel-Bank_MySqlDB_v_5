@@ -1,0 +1,29 @@
+#localhost:9000/h2-console--for access h2 database
+#web-allow-others: true — allows access from outside localhost (remote connections),
+#when it is uploded in docker.
+server:
+  port: 9000
+spring:
+  application:
+    name: "cards"
+  profiles:
+    active: "prod"
+  datasource:
+    url: jdbc:mysql://localhost:3308/cardsdb
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+  sql:
+    init:
+      mode: always
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+     
+      
